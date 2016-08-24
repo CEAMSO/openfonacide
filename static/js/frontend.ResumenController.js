@@ -283,7 +283,7 @@
         require(
             [
                 'echarts',
-                'echarts/chart/funnel',   // load-on-demand, don't forget the Magic switch type.
+                //'echarts/chart/funnel',   // load-on-demand, don't forget the Magic switch type.
                 'echarts/chart/pie',
                 'echarts/chart/bar',
                 'echarts/chart/line'
@@ -315,7 +315,7 @@
         $scope.ubicacionesSeleccionadas = [];
 
         var cargarAnio = function(){
-            $scope.anios = ['2012', '2015'];
+            $scope.anios = ['2014', '2015', '2016'];
         };
         cargarAnio();
 

@@ -86,17 +86,17 @@
 
 
     <div class="ui bottom attached active tab segment stackable grid" style="padding-left:30px" ng-init="search = {}">
-        <div class="ui black basic button" ng-class="{active:periodo == 2014}" ng-click="periodo='2014'"
+        <div class="ui black basic button" ng-class="{active:periodo == 2014}" ng-click="periodo='2014'" ng-show="show2014"
              style="margin-left: 10px; margin-top:15px">2014
         </div>
 
      
 
-        <div class="ui black basic button" ng-class="{active:periodo == 2015}" ng-click="periodo='2015'"
+        <div class="ui black basic button" ng-class="{active:periodo == 2015}" ng-click="periodo='2015'" ng-show="show2015"
              style=" margin-top:15px">2015
         </div>
 
-         <div class="ui black basic button" ng-class="{active:periodo == 2016}" ng-click="periodo='2016'"
+         <div class="ui black basic button" ng-class="{active:periodo == 2016}" ng-click="periodo='2016'" ng-show="show2016"
              style=" margin-top:15px">2016
         </div>
         <!--
@@ -214,7 +214,7 @@
                         Aulas</i></div>
 
                     <div class="ui teal segment"
-                         ng-repeat="item in prioridades_aulas = (prioridades.aulas | filter:{'periodo': periodo, 'codigo_institucion': institucion_actual}:true | filter:{nombre_espacio:null})"
+                         ng-repeat="item in prioridades_aulas = (prioridades.aulas | filter:{'periodo': periodo, 'codigo_institucion': institucion_actual}:true | filter:{nombre_espacio:''})"
                          ng-if="item.codigo_institucion==institucion_actual" style="margin:0">
                         <div class="ui item">
                             <div class="ui stackable grid">
@@ -269,10 +269,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="three wide column left aligned auto-height"
-                                        {#                                         style="border-left: solid 0.1em #ddd;"#}
-                                        >
-                                    <div class="ui fluid basic buttons">
+                                <div class="three wide column left aligned auto-height">
+                                                                         
+                                        
+                                     <!--  <div class="ui fluid basic buttons">
                                         <div class="ui icon basic fluid button with-popup"
                                              {% if 'openfonacide.verificar_estado' in user.get_all_permissions or 'openfonacide.cambiar_estado' in user.get_all_permissions %}
                                              ng-click="modificarEstado(item,'Aulas')"{% endif %}>
@@ -312,12 +312,15 @@
                                                 Sin archivos adjuntos.
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
 
-{#                                    <div class="ui divider" style="margin: 5px"></div>#}
-                                    <div class="fluid ui button teal" ng-click="reportar(item, 'aulas')"
-                                         style="margin-top: 10px"> Esta obra se realizo?
+
+
+                                    <a href="http://www.mec.gov.py/cms_v4/miradondeaprendo" target="_blank">
+                                    <div class="fluid ui button teal" 
+                                         style="margin-top: 10px"> esta obra se realizo
                                     </div>
+                                    </a>
                                 </div>
                             </div>
 
@@ -398,7 +401,7 @@
                                 <div class="three wide column left aligned auto-height"
                                         {#                                         style="border-left: solid 0.1em #ddd;"#}
                                         >
-                                    <div class="ui fluid basic buttons">
+                                        <!-- <div class="ui fluid basic buttons">
                                         <div class="ui icon basic fluid button with-popup"
                                              {% if 'openfonacide.verificar_estado' in user.get_all_permissions or 'openfonacide.cambiar_estado' in user.get_all_permissions %}
                                              ng-click="modificarEstado(item,'Sanitarios')"{% endif %}>
@@ -438,10 +441,12 @@
                                                 Sin archivos adjuntos.
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="fluid ui button teal" ng-click="reportar(item, 'sanitarios')"
+                                    </div>-->
+                                    <a  href="http://www.mec.gov.py/cms_v4/miradondeaprendo" target="_blank">
+                                    <div class="fluid ui button teal"
                                          style="margin-top: 10px"> Esta obra se realizo?
                                     </div>
+                                    </a>
                                 </div>
                             </div>
 
@@ -517,7 +522,7 @@
                                 <div class="three wide column left aligned auto-height"
                                         {#                                         style="border-left: solid 0.1em #ddd;"#}
                                         >
-                                    <div class="ui fluid basic buttons">
+                                        <!--<div class="ui fluid basic buttons">
                                         <div class="ui icon basic fluid button with-popup"
                                              {% if 'openfonacide.verificar_estado' in user.get_all_permissions or 'openfonacide.cambiar_estado' in user.get_all_permissions %}
                                              ng-click="modificarEstado(item,'Mobiliarios')"{% endif %}>
@@ -557,10 +562,12 @@
                                                 Sin archivos adjuntos.
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="fluid ui button teal" ng-click="reportar(item, 'mobiliarios')"
+                                    </div>-->
+                                    <a href="http://www.mec.gov.py/cms_v4/miradondeaprendo" target="_blank">
+                                    <div class="fluid ui button teal" 
                                          style="margin-top: 10px"> Esta obra se realizo?
                                     </div>
+                                    </a>
                                 </div>
                             </div>
 
@@ -636,7 +643,7 @@
                                 <div class="three wide column left aligned auto-height"
                                         {#                                         style="border-left: solid 0.1em #ddd;"#}
                                         >
-                                    <div class="ui fluid basic buttons">
+                                    <!--   <div class="ui fluid basic buttons">
                                         <div class="ui icon basic fluid button with-popup"
                                              {% if 'openfonacide.verificar_estado' in user.get_all_permissions or 'openfonacide.cambiar_estado' in user.get_all_permissions %}
                                              ng-click="modificarEstado(item,'Otros Espacios')"{% endif %}>
@@ -676,10 +683,12 @@
                                                 Sin archivos adjuntos.
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="fluid ui button teal" ng-click="reportar(item, 'otros')"
+                                    </div>-->
+                                    <a href="http://www.mec.gov.py/cms_v4/miradondeaprendo" target="_blank">
+                                    <div class="fluid ui button teal" 
                                          style="margin-top: 10px"> Esta obra se realizo?
                                     </div>
+                                    </a>
                                 </div>
                             </div>
 
@@ -857,18 +866,7 @@
                 <label for="reportados">Instituciones Reportadas</label>
             </div>
         </div>
-{#        <div class="item filtros">#}
-{#            <div class="ui checkbox">#}
-{#                <input id="adjudicaciones" type="checkbox" ng-model="otrosSeleccionados.adjudicaciones" ng-change="activar_filtro()">#}
-{#                <label for="adjudicaciones">Instituciones con Adjudicaciones</label>#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="item filtros">#}
-{#            <div class="ui checkbox">#}
-{#                <input id="planificaciones" type="checkbox" ng-model="otrosSeleccionados.planificaciones" ng-change="activar_filtro()">#}
-{#                <label for="planificaciones">Instituciones con Planificaciones</label>#}
-{#            </div>#}
-{#        </div>#}
+
         <div class="item filtros">
             <div class="ui checkbox">
                 <input id="planificaciones" type="checkbox" ng-model="otrosSeleccionados.documentos" ng-change="activar_filtro()">
@@ -876,7 +874,7 @@
             </div>
         </div>
 
-        <div class="item filtros" style="margin-bottom: 5px">
+      <div class="item filtros" style="margin-bottom: 5px">
             <label for="estado_de_obras">Estado de obras</label>
             <select id="estado_de_obras" ng-model="otrosSeleccionados.estado" class="ui fluid upward dropdown">
               <option value="">Estado</option>
