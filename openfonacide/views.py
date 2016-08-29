@@ -683,8 +683,8 @@ def contraloria_vinculacion(request):
        #                         documento=documento)
    # historial.save()
 
-   
-    return JsonResponse('Exito!', safe=False, status=200)
+    return redirect('/contralorfonacide/contraloria-vinculacion/',)
+    #return JsonResponse('Exito!', safe=False, status=200)
 
 
 def reportar(request):
