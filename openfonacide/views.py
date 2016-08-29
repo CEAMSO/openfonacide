@@ -657,7 +657,7 @@ def contraloria_vinculacion(request):
     nuevo_documento.save()
     for codigo_institucion in instituciones:
         print "This is count %s" % codigo_institucion
-        institucion = Institucion.objects.filter(codigo_institucion=codigo_institucion)[:1].get()
+        institucion = Institucion.objects.get(codigo_institucion=codigo_institucion, periodo='2014')
         institucion.documento_contraloria.add(nuevo_documento)
         institucion.save()
         print "This is count %s" % institucion.nombre_institucion
