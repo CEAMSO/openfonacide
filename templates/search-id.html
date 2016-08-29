@@ -8,7 +8,7 @@
 
 
             <div class="menu" style="z-index: 1010">
-                <div class="item" href="#">Todosss</div>
+                <div class="item" href="#">TodosssID</div>
                 <div class="item">Código de institución</div>
                 <div class="item">Nombre de institución</div>
                 <div class="item">Dirección</div>
@@ -17,19 +17,39 @@
             </div>
         </div>
         <input class="prompt" type="text" placeholder="Institución">
-        <a class="ui teal label close-results" style="border-radius: 0 3px 3px 0" onclick="ocular_resultados()">&#x2716;</a>
+       
+         <a class="ui tag label">
+                                       Agregar institucion
+                                      </a>
+
 
     </div>
     <div class="results ui styled accordion" style="z-index: 1022; width: 100% "></div>
 </div>
 
 
+
+
 <script>
-    function ocular_resultados(){
+    function ocular_resultados(result){
         var $results = $('.results');
         $results.removeClass('visible');
         $('.results').addClass('hidden');
         $('.close-results').hide();
+        console.log(result);
+
+           $('#ubicacion-labels').append(
+                    $('<div class="ui label" style="margin-bottom: 5px" data-dep="' + result + '" data-dis="' + result + '" data-bar="' + result + '">'+'</div>')
+                        .html(result)
+                        .append(
+                        $('<i class="delete icon"></i>')
+                            .click(function () {
+                                $(this).parent().remove();
+                           
+                            })
+                        
+                    ).append('<input name="instituciones[]"  type ="hidden" value="'+result+'">')
+                );
     }
     $('body').keyup(function(event){
       //ESC
@@ -106,7 +126,7 @@
                                     open = false;
                                     // each item inside category
                                     $.each(category.results, function (index, result) {
-                                        html += '<a class="item" onclick="ocular_resultados()"  href="' + response.base_url + 'map?establecimiento=' + result.codigo_establecimiento + '&institucion=' + result.codigo_institucion + '">';
+                                        html += '<a class="item" onclick="ocular_resultados('+ result.codigo_institucion +')" >';
 
                                         html += '<div class="content">';
 
@@ -156,7 +176,9 @@
             })
             .keypress(function(event){
               if (event.which == 13) {
-                window.location.href = 'results/?q='+$(this).find('input').val()+'&type='+tipo;
+                console.log(+$(this).find('input').val());
+
+               // window.location.href = 'results/?q='+$(this).find('input').val()+'&type='+tipo;
               }
             })
     ;

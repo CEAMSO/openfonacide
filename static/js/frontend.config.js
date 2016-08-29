@@ -56,6 +56,11 @@
 						templateUrl: 'partials/linkbreak.html',
 						controllerAs: 'controller'
 					})
+					.when('/contraloria-vinculacion/', {
+						controller: 'MatchContraloriaController',
+						templateUrl: 'partials/contraloria-vinculacion.html',
+						controllerAs: 'controller'
+					})
 					.when('/microplanificacion/', {
 						controller: 'FonacideController',
 						templateUrl: 'partials/microplanificacion.html'

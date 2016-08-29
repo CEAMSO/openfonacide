@@ -107,6 +107,12 @@ class Adjudicacion(models.Model):
     class Meta:
         verbose_name_plural = "adjudicaciones"
 
+class Documento(models.Model):
+    archivo =  models.FileField(upload_to=get_upload_file_name, null=True)
+    anho = models.CharField(max_length=255, null=True)
+    
+   
+
 
 # Datos Específicos de Instituciones Educativas
 class Institucion(models.Model):
@@ -127,6 +133,7 @@ class Institucion(models.Model):
     uri_institucion = models.CharField(max_length=256, null=True)
     planificaciones = models.ManyToManyField(Planificacion)
     adjudicaciones = models.ManyToManyField(Adjudicacion)
+    documento_contraloria = models.ManyToManyField(Documento, related_name="Instituciones")
 
     class Meta:
         verbose_name_plural = "instituciones"

@@ -113,7 +113,7 @@
                                       target="_blank"> Más info</a></div>
             <div class="ui button" href="#disqus_thread" du-smooth-scroll>Hacer comentarios</div>
             <div class="ui button" ng-click="mostrarAdjudicaciones()">Adjudicaciones</div>
-{#            <div class="ui button" ng-click="mostrarContraloria()"> Documentos de contraloría</div>#}
+          <div class="ui button" ng-click="mostrarContraloria()"> Documentos de contraloría</div>
         </div>
 
 
@@ -179,32 +179,41 @@
                 </div>
 
 
-{#            <div class="column" ng-show="show_contraloria">#}
-{#                <div class="ui requerimiento stackable grid segment" style="padding-top: 10px;"#}
-{#                     >#}
-{#                    <h3>Documentos de Contraloría</h3>#}
-{##}
-{#                    <div class="sixteen wide column">#}
-{#                        <div class="ui  segment">#}
-{#                             <h4>No hay documentos</h4>#}
-{#                            <ul>#}
-{#                                <!-- <li>Construccion de Baños en el Colegio Nacional- <span class="ui teal label">Gs. 60.000.000</span>#}
-{#                                    <a href="https://www.contrataciones.gov.py/datos/visualizaciones/etapas-licitacion-emb?id_llamado=272219"#}
-{#                                       target="_blank"> ver estado </a></li>#}
-{#                                <li>Adquisición de Muebles para Escuelas - <span#}
-{#                                        class="ui teal label">Gs. 60.000.000</span> <a#}
-{#                                        href="https://www.contrataciones.gov.py/datos/visualizaciones/etapas-licitacion-emb?id_llamado=272219"#}
-{#                                        target="_blank"> ver estado </a></li>#}
-{#                                <li>Construcción Modulo para la Escuela de Danzas - <span class="ui teal label">Gs. 60.000.000</span><a#}
-{#                                        href="https://www.contrataciones.gov.py/datos/visualizaciones/etapas-licitacion-emb?id_llamado=272219"#}
-{#                                        target="_blank"> ver estado </a></li> -->#}
-{##}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                </div>#}
-{#            </div>#}
+            <div class="column" ng-show="show_contraloria">
+              <div class="ui requerimiento stackable grid segment" style="padding-top: 10px;"
+                     >
+                    <h3>Documentos de Contraloría</h3>
+
+                    
+
+                    
+
+                   <div class="sixteen wide column">
+                        <div class="ui  segment">
+                            
+                               <h4 ng-if="documentosContraloria.length == 0">No hay documentos</h4>
+                              <ul>
+                                <li ng-repeat=" p in documentosContraloria">Documento de Contraloría - {$ p.anho $}</i>.
+                                    <a href="{$ p.archivo_url $}"
+                                       target="_blank"> Ver estado </a>
+                                </li>
+                              <!--  <li>Construccion de Baños en el Colegio Nacional- <span class="ui teal label">Gs. 60.000.000</span>
+                                    <a href="https://www.contrataciones.gov.py/datos/visualizaciones/etapas-licitacion-emb?id_llamado=272219"
+                                       target="_blank"> ver estado </a></li>
+                                <li>Adquisición de Muebles para Escuelas - <span
+                                        class="ui teal label">Gs. 60.000.000</span> <a
+                                        href="https://www.contrataciones.gov.py/datos/visualizaciones/etapas-licitacion-emb?id_llamado=272219"
+                                        target="_blank"> ver estado </a></li>
+                                <li>Construcción Modulo para la Escuela de Danzas - <span class="ui teal label">Gs. 60.000.000</span><a
+                                        href="https://www.contrataciones.gov.py/datos/visualizaciones/etapas-licitacion-emb?id_llamado=272219"
+                                        target="_blank"> ver estado </a></li> -->
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 
             <!-- AULAS BEGIN -->
@@ -522,7 +531,7 @@
                                 <div class="three wide column left aligned auto-height"
                                         {#                                         style="border-left: solid 0.1em #ddd;"#}
                                         >
-                                        <!--<div class="ui fluid basic buttons">
+                                        <div class="ui fluid basic buttons">
                                         <div class="ui icon basic fluid button with-popup"
                                              {% if 'openfonacide.verificar_estado' in user.get_all_permissions or 'openfonacide.cambiar_estado' in user.get_all_permissions %}
                                              ng-click="modificarEstado(item,'Mobiliarios')"{% endif %}>
@@ -562,7 +571,7 @@
                                                 Sin archivos adjuntos.
                                             </div>
                                         </div>
-                                    </div>-->
+                                    </div>
                                     <a href="http://www.mec.gov.py/cms_v4/miradondeaprendo" target="_blank">
                                     <div class="fluid ui button teal" 
                                          style="margin-top: 10px"> Esta obra se realizo?

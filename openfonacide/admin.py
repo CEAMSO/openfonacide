@@ -72,6 +72,23 @@ class PlanificacionAdmin(ImportExportModelAdmin):
     resource_class = PlanificacionResource
     pass
 
+
+class InstitucionInline(admin.TabularInline):
+    model = Institucion.documento_contraloria.through
+
+
+
+class DocumentosResource(resources.ModelResource):
+    class Meta:
+        model = Documento
+        # exclude = ('id',)
+
+
+@admin.register(Documento)
+class DocumentoAdmin(ImportExportModelAdmin):
+    resource_class = DocumentosResource
+    pass
+
 ####### ESTABLECIMIENTO ####################
 
 class EstablecimientoAdmin(admin.ModelAdmin):

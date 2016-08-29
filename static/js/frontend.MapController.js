@@ -506,6 +506,7 @@
 
                         $scope.planificaciones_actual = planificacion_actuales;
                         $scope.adjudicaciones_actual = adjudicaciones;
+                        
                     }//fin setInfoDNCP
 
                     backEnd.establecimiento.get({
@@ -528,6 +529,14 @@
                             console.log ( 'info data instituciones -- '+ $scope.infoData.instituciones);
                             console.log (  $scope.infoData.instituciones);
                             $scope.infoData.establecimiento = establecimiento_nuevo;
+
+                             $scope.documentosContraloria =  $scope.infoData.instituciones[0].documento_contraloria;
+                                console.log (  $scope.documentosContraloria);
+                            /* $scope.documentosContraloria = instituciones_nuevas.documento_contraloria
+                                    console.log('--');
+                                     console.log('--');
+                                    console.log($scope.documentosContraloria);*/
+
                             //Verifica consistencia de datos
                             if ($.inArray(idInstitucion, $scope.infoData.instituciones
                                     .map(
@@ -549,8 +558,10 @@
 
                                 $scope.institucion_actual = instituciones_nuevas[
                                     0].codigo_institucion;
+
                                 //$scope.planificaciones_actual = instituciones_nuevas[0].planificaciones;
                                 //$scope.adjudicaciones_actual = instituciones_nuevas[0].adjudicaciones;
+                                console.log(instituciones_nuevas[0].documento_contraloria);
                                 setInfoDNCP(instituciones_nuevas[0].planficaciones, instituciones_nuevas[0].adjudicaciones);
                             }
                             $timeout(function () {
