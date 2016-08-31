@@ -671,7 +671,7 @@ def contraloria_vinculacion(request):
         except ObjectDoesNotExist:
             print "No existe institucion numero ; %s" % codigo_institucion
        
-        print "Nombre de institucion; %s" % institucion.nombre_institucion
+        
         
 
    
@@ -680,10 +680,6 @@ def contraloria_vinculacion(request):
     
 
     
-
-    current_user = request.user
-
-    fecha_actual = datetime.now()
 
    
 
