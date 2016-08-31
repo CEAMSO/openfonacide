@@ -530,7 +530,7 @@
                             console.log (  $scope.infoData.instituciones);
                             $scope.infoData.establecimiento = establecimiento_nuevo;
 
-                             $scope.documentosContraloria =  $scope.infoData.instituciones[0].documento_contraloria;
+                            
                                 console.log (  $scope.documentosContraloria);
                             /* $scope.documentosContraloria = instituciones_nuevas.documento_contraloria
                                     console.log('--');
@@ -550,6 +550,7 @@
                                 for (var i in t) {
                                     if (t[i].codigo_institucion === idInstitucion) {
                                         setInfoDNCP(t[i].planificaciones, t[i].adjudicaciones);
+                                         $scope.documentosContraloria =  t[i].documento_contraloria;
                                         //$scope.planificaciones_actual = t[i].planificaciones;
                                         //$scope.adjudicaciones_actual = t[i].adjudicaciones;
                                     }
