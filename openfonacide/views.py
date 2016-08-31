@@ -656,12 +656,17 @@ def contraloria_vinculacion(request):
     nuevo_documento = Documento(archivo=documento, anho = anho)
     nuevo_documento.save()
     for codigo_institucion in instituciones:
-        print "This is count %s" % codigo_institucion
+        print "Codigo de institucion; %s" % codigo_institucion
         # institucion = Institucion.objects.get(codigo_institucion=codigo_institucion, periodo='2014')
-        institucion = Institucion.objects.filter(codigo_institucion=codigo_institucion, periodo='2014')[:1].get()
-        institucion.documento_contraloria.add(nuevo_documento)
-        institucion.save()
-        print "This is count %s" % institucion.nombre_institucion
+        try:
+            institucion = Institucion.objects.get(codigo_institucion=codigo_institucion, periodo='2014')
+             # institucion = Institucion.objects.filter(codigo_institucion=codigo_institucion, periodo='2014')[:1].get()
+            institucion.documento_contraloria.add(nuevo_documento)
+            institucion.save()                
+        except ObjectDoesNotExist:
+            print "No existe institucion numero ; %s" % codigo_institucion
+       
+        print "Nombre de institucion; %s" % institucion.nombre_institucion
         
 
    
