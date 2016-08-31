@@ -659,7 +659,7 @@ def contraloria_vinculacion(request):
         print "Codigo de institucion; %s" % codigo_institucion
         # institucion = Institucion.objects.get(codigo_institucion=codigo_institucion, periodo='2014')
         try:
-            institucion = Institucion.objects.get(codigo_institucion=codigo_institucion, periodo='2014')
+            institucion = Institucion.objects.get(codigo_institucion=codigo_institucion)
              # institucion = Institucion.objects.filter(codigo_institucion=codigo_institucion, periodo='2014')[:1].get()
             institucion.documento_contraloria.add(nuevo_documento)
             institucion.save()                
