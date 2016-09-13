@@ -210,7 +210,20 @@ table#table_id {
 
          {
             extend: 'csvHtml5',
-            text: 'Bajar CSV',
+            text: 'Descargar datos Filtrados (CSV)',
+             filename: 'datos-mobiliarios-2015',
+             header: true,
+            exportOptions: {
+                modifier: {
+                    search: 'applied'
+                },
+            }
+
+        },
+
+         {
+            extend: 'csvHtml5',
+            text: 'Descargar todos los datos (CSV) ',
              filename: 'datos-mobiliarios-2015',
              header: true,
             exportOptions: {
@@ -221,29 +234,40 @@ table#table_id {
 
         },
 
-         {
+        
+          {
+                extend:  'pdf',
+                 text: 'Descargar PDF',
+                 header: true,
+                    exportOptions: {
+                modifier: {
+                    search: 'none'
+                },
+            }
+               
+            },
+
+             {
+                extend:  'pdf',
+                 text: 'Descargar PDF Filtrado',
+                 header: true,
+                    exportOptions: {
+                modifier: {
+                    search: 'applied'
+                },
+            }
+               
+            },
+
+             {
                 text: 'Ver Dicionario',
                 action: function ( e, dt, node, config ) {
 
                      window.open( '/contralorfonacide/mobiliarios-diccionario' );
                 }
-            },
-          /*{
-                extend: 'print',
-                 text: 'Imprimir/PDF',
-                 header: true,
-                customize: function ( win ) {
-                    $(win.document.body)
-                        .css( 'font-size', '10pt' )
-                      
- 
-                    $(win.document.body).find( 'table' )
-                        .addClass( 'compact' )
-                        .css( 'font-size', 'inherit' );
-                }
-            },*/
+            }
 
-             'pdf',
+            ,
                
        
     ],

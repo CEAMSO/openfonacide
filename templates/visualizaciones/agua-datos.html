@@ -217,7 +217,20 @@ table#table_id {
 
          {
             extend: 'csvHtml5',
-            text: 'Bajar CSV',
+            text: 'Descargar datos Filtrados (CSV)',
+             filename: 'datos-mobiliarios-2015',
+             header: true,
+            exportOptions: {
+                modifier: {
+                    search: 'applied'
+                },
+            }
+
+        },
+
+         {
+            extend: 'csvHtml5',
+            text: 'Descargar todos los datos (CSV) ',
              filename: 'datos-mobiliarios-2015',
              header: true,
             exportOptions: {
@@ -227,7 +240,31 @@ table#table_id {
             }
 
         },
-         'pdf',
+
+        
+          {
+                extend:  'pdf',
+                 text: 'Descargar PDF',
+                 header: true,
+                    exportOptions: {
+                modifier: {
+                    search: 'none'
+                },
+            }
+               
+            },
+
+             {
+                extend:  'pdf',
+                 text: 'Descargar PDF Filtrado',
+                 header: true,
+                    exportOptions: {
+                modifier: {
+                    search: 'applied'
+                },
+            }
+               
+            },
 
            {
                 text: 'Ver Dicionario',
