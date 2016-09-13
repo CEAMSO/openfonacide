@@ -1,0 +1,30 @@
+[
+  {
+    "nombre": "Codigo Departamento",
+    "descripcion": "Corresponde al código asignado según la cartografía nacional al departamento geográfico donde esta localizado el establecimiento escolar",
+    "tipo": "string",
+    "restriccion": "No más de 2 caracteres",
+    "ejemplo": 0
+  },
+  {
+    "nombre": "Departametos",
+    "descripcion": "Corresponde a la descripción del nombre del departamento geográfico correspondiente al código",
+    "tipo": "string",
+    "restriccion": "No más de 40 caracteres",
+    "ejemplo": "ASUNCION"
+  },
+  {
+    "nombre": "Abasteciemiento de Agua",
+    "descripcion": "Indica el nombre del servicio de abstecimiento de agua potable que utiliza el establecimiento escolar",
+    "tipo": "string",
+    "restriccion": "",
+    "ejemplo": "SENASA"
+  },
+  {
+    "nombre": "Cantidad",
+    "descripcion": "Corresponde a la cantidad instituciones con el mismo tipo de abastecimiento de agua",
+    "tipo": "integer",
+    "restriccion": "",
+    "ejemplo": 10
+  }
+]

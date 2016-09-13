@@ -1,0 +1,44 @@
+[
+ {
+   "nombre": "Codigo Departamento ",
+   "descripcion": "Corresponde al código asignado según la cartografía nacional al departamento geográfico donde esta localizado el establecimiento escolar",
+   "tipo": "string",
+   "restriccion": "No más de 2 caracteres",
+   "ejemplo": "0"
+ },
+ {
+   "nombre": "Departametos ",
+   "descripcion": "Corresponde a la descripción del nombre del departamento geográfico correspondiente al código",
+   "tipo": "string",
+   "restriccion": "No más de 40 caracteres",
+   "ejemplo": "ASUNCION"
+ },
+ {
+   "nombre": "Grupo de Mobiliario",
+   "descripcion": "Corresponde al nombre del grupo del mobiliario, mueble o equipamiento de aula requerido por la institución educativa",
+   "tipo": "string",
+   "restriccion": "",
+   "ejemplo": "AMPLIFICADOR"
+ },
+ {
+   "nombre": "Mobiliario ",
+   "descripcion": "Corresponde al nombre del mobiliario, mueble o equipamiento de aula requerido por la institución educativa",
+   "tipo": "string",
+   "restriccion": "",
+   "ejemplo": "MATERIAL AUDIOVISUAL"
+ },
+ {
+   "nombre": "Cantidad requerida ",
+   "descripcion": "Corresponde a la cantidad del mobiliario, mueble o equipamiento de aula requerida por la institución educativa",
+   "tipo": "integer",
+   "restriccion": "",
+   "ejemplo": "10"
+ },
+ {
+   "nombre": "Numero de beneficiarios",
+   "descripcion": "Indica la cantidad de personas que resultarían beneficiadas en caso de atenderse (satisfacerse) la necesidad de la institución educativa indicada por el requerimiento",
+   "tipo": "integer",
+   "restriccion": "",
+   "ejemplo": "100"
+ }
+]

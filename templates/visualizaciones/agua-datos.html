@@ -141,15 +141,17 @@ table#table_id {
 			<table id="table_id" class="table table-striped table-bordered"  cellspacing="0" width="100%">
 			    <thead>
 			        <tr>
-			        		<th>Codigo Departamento</th>
-			        	<th>Departametos</th>
-			        	 <th>Abasteciemiento de Agua</th>
-                  <th>Cantidad</th>
+			        		<th>Codigo Departamento </br> <input class="form-control input-sm" type="text" placeholder="Buscar " /></th>
+			        	<th>Departametos</br> <input class="form-control input-sm" type="text" placeholder="Buscar " /></th>
+			        	 <th>Abasteciemiento de Agua</br> <input class="form-control input-sm" type="text" placeholder="Buscar " /></th>
+                  <th>Cantidad</br> <input class="form-control input-sm" type="text" placeholder="Buscar " /></th>
 			            
 			        </tr>
 			    </thead>
 			    
 			</table>
+
+
 		
 		</div>
 
@@ -190,7 +192,7 @@ table#table_id {
 
             abastecimiento = data;
 
-             $('#table_id').DataTable({
+             table=   $('#table_id').DataTable({
       
          
 // ajax: "{% static 'js/abastecimiento.json' %}",
@@ -224,16 +226,62 @@ table#table_id {
                 },
             }
 
-        }
+        },
+         'pdf',
+
+           {
+                text: 'Ver Dicionario',
+                action: function ( e, dt, node, config ) {
+
+                     window.open( '/contralorfonacide/agua-diccionario' );
+                }
+            },
                
        
     ],
+     "ordering": false,
+
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select class="form-control input-sm"><option value=""></option></select>')
+                    .appendTo( $(column.footer()) )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        },
+        scrollY:   400,
+         "scrollX": true,
 
         
          
 
 
     });
+
+
+   table.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.header() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
           
 
 
@@ -271,7 +319,7 @@ padding: 1.5em 0em 1.2em;">
   
 
 <div style="width:50%; float:left;">
-  <a href="http://datos.mec.gov.py/data/requerimientos_mobiliarios" style="color:;">Datos Proveídos por el MEC</a>
+  <a href="http://datos.mec.gov.py/data/servicios_basicos" style="color:;">Datos Proveídos por el MEC</a>
 	    <p>Créditos:
 <a href="" style="color:;">Licencia Creative Commons CC-BY-SA</a></p>
 <img src="{% static 'images/cc.png' %}" class="cc">
