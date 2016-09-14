@@ -23,6 +23,7 @@
 		
 
 			 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+              <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 			 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 	
 
@@ -217,8 +218,8 @@ table#table_id {
 
          {
             extend: 'csvHtml5',
-            text: 'Descargar datos Filtrados (CSV)',
-             filename: 'datos-mobiliarios-2015',
+            text: 'Descargar datos Filtrados (CSV) <i class="fa fa-file" aria-hidden="true"></i> ',
+             filename: 'datos-abastecimiento-2015',
              header: true,
             exportOptions: {
                 modifier: {
@@ -230,8 +231,8 @@ table#table_id {
 
          {
             extend: 'csvHtml5',
-            text: 'Descargar todos los datos (CSV) ',
-             filename: 'datos-mobiliarios-2015',
+            text: 'Descargar todos los datos (CSV) <i class="fa fa-file" aria-hidden="true"></i> ',
+             filename: 'datos-abastecimiento-2015',
              header: true,
             exportOptions: {
                 modifier: {
@@ -244,7 +245,7 @@ table#table_id {
         
           {
                 extend:  'pdf',
-                 text: 'Descargar PDF',
+                 text: 'Descargar PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
                  header: true,
                     exportOptions: {
                 modifier: {
@@ -256,7 +257,7 @@ table#table_id {
 
              {
                 extend:  'pdf',
-                 text: 'Descargar PDF Filtrado',
+                 text: 'Descargar PDF Filtrado <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
                  header: true,
                     exportOptions: {
                 modifier: {
@@ -267,10 +268,10 @@ table#table_id {
             },
 
            {
-                text: 'Ver Dicionario',
+                text: 'Ver Dicionario <i class="fa fa-book" aria-hidden="true"></i> ',
                 action: function ( e, dt, node, config ) {
 
-                     window.open( '/contralorfonacide/agua-diccionario' );
+                     window.location.replace( '/contralorfonacide/agua-diccionario' );
                 }
             },
                

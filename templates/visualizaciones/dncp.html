@@ -199,10 +199,10 @@ piden más ?
 
 <div class="row">
 <div class="col-md-10 ">
-
+<!--
 <div  class="btn btn-default btn-lg col-md-6 preguntar">
  Preguntar
-</div>
+</div>-->
 </div>
 
 
@@ -308,7 +308,11 @@ piden más ?
 
 });
 
-            $(".preguntar").click(function () {
+
+
+ function Preguntar() {
+
+                console.log('preguntar');
 
       
                 filtro = $("input:checked").val();
@@ -385,7 +389,11 @@ piden más ?
 
 
 
-                        });
+                        }
+
+            $(".preguntar").click(Preguntar);
+             $("input").change(Preguntar);
+                 $("select").change(Preguntar);
 
 
         </script>

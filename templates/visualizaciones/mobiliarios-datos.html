@@ -23,6 +23,7 @@
 		
 
 			 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+              <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 			 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 	
 
@@ -129,7 +130,7 @@ table#table_id {
 				<div class="ui column">
 					<p>Dentro de infraestructura se pueden pedir: Construcción o Reparación de Aulas, Construcción o Reparación de Baños, Construcción de Otros Espacios y Mobiliarios. </p>
 
-						<p>Los datos presentados son datos agregados del año 2014 disponibilizados por el MEC en el <a href="http://datos.mec.gov.py/data/servicios_basicos">Portal de Datos Abiertos.</a></p>
+						<p>Los datos presentados son datos agregados del año 2015 disponibilizados por el MEC en el <a href="http://datos.mec.gov.py/data/servicios_basicos">Portal de Datos Abiertos.</a></p>
 
 				</div>
 				
@@ -210,7 +211,7 @@ table#table_id {
 
          {
             extend: 'csvHtml5',
-            text: 'Descargar datos Filtrados (CSV)',
+            text: 'Descargar datos Filtrados (CSV)  <i class="fa fa-file" aria-hidden="true"></i> ',
              filename: 'datos-mobiliarios-2015',
              header: true,
             exportOptions: {
@@ -223,7 +224,7 @@ table#table_id {
 
          {
             extend: 'csvHtml5',
-            text: 'Descargar todos los datos (CSV) ',
+            text: 'Descargar todos los datos (CSV) <i class="fa fa-file" aria-hidden="true"></i> ',
              filename: 'datos-mobiliarios-2015',
              header: true,
             exportOptions: {
@@ -237,7 +238,7 @@ table#table_id {
         
           {
                 extend:  'pdf',
-                 text: 'Descargar PDF',
+                 text: 'Descargar PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
                  header: true,
                     exportOptions: {
                 modifier: {
@@ -249,7 +250,7 @@ table#table_id {
 
              {
                 extend:  'pdf',
-                 text: 'Descargar PDF Filtrado',
+                 text: 'Descargar PDF Filtrado <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
                  header: true,
                     exportOptions: {
                 modifier: {
@@ -260,10 +261,10 @@ table#table_id {
             },
 
              {
-                text: 'Ver Dicionario',
+                text: 'Ver Dicionario  <i class="fa fa-book" aria-hidden="true"></i>',
                 action: function ( e, dt, node, config ) {
 
-                     window.open( '/contralorfonacide/mobiliarios-diccionario' );
+                     window.location.replace( '/contralorfonacide/mobiliarios-diccionario' );
                 }
             }
 
