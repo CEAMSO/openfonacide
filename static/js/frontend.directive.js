@@ -106,7 +106,7 @@
                     departamento: '',
                     distrito: '',
                     barrio: '',
-                    check: false
+                    check: true
                 };
             }
             $scope.$watch('ctrl.selected.check', function(value){
@@ -273,6 +273,7 @@
                 $timeout(function () {
                     $('#ubicacion .ui.dropdown').dropdown('clear');
                 }, 0, false);
+                
             };
             $control.borrarUbicaciones = function () {
                 $scope.seleccionados = [];

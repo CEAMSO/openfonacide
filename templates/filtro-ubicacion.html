@@ -7,28 +7,28 @@
     <input id="ubicacion-check" ng-model="ctrl.selected.check" ng-checked="ctrl.selected.check" ng-change="ctrl.callback()" type="checkbox" name="public">
     <label for="ubicacion-check"></label>
   </div>
-  <b ng-if="ctrl.selected.check" ng-click="ctrl.selected.check = false; ctrl.callback()" style="float: right">Activado&nbsp;&nbsp;</b>
-  <b ng-if="!ctrl.selected.check" ng-click="ctrl.selected.check = true; ctrl.callback()" style="float: right; opacity: 0.5">Desactivado&nbsp;&nbsp;</b>
+  <b ng-init="ctrl.selected.check = true" ng-if="ctrl.selected.check" ng-click="ctrl.selected.check = false; " style="float: right">Activado&nbsp;&nbsp;</b>
+  <b ng-init="ctrl.selected.check = true" ng-if="!ctrl.selected.check" ng-click="ctrl.selected.check = true; " style="float: right; opacity: 0.5">Desactivado&nbsp;&nbsp;</b>
   <div id="ubicacion-departamento" class="item filtros" style="margin-top: 5px; margin-bottom: 5px">
-      <select ng-model="ctrl.selected.departamento" ng-change="ctrl.cambioDepartamento();ctrl.callback()" class="ui fluid search dropdown">
+      <select ng-model="ctrl.selected.departamento" ng-change="ctrl.cambioDepartamento();" class="ui fluid search dropdown">
           <option value="">Departamento</option>
           <option value="{$ ubicacion.id $}" ng-repeat="ubicacion in ctrl.ubicaciones">{$ ubicacion.nombre $}</option>
       </select>
   </div>
   <div id="ubicacion-distrito" class="item filtros" style="margin-top: 5px; margin-bottom: 5px">
-      <select ng-model="ctrl.selected.distrito" ng-change="ctrl.cambioDistrito();ctrl.callback()" class="ui fluid search dropdown">
+      <select ng-model="ctrl.selected.distrito" ng-change="ctrl.cambioDistrito();" class="ui fluid search dropdown">
           <option value="">Distrito</option>
           <option value="{$ distrito.id $}" ng-repeat="distrito in ctrl.distritos">{$ distrito.nombre $}</option>
       </select>
   </div>
   <div id="ubicacion-barrio" class="item filtros" style="margin-top: 5px; margin-bottom: 5px">
-      <select ng-model="ctrl.selected.barrio" ng-change="ctrl.callback()" class="ui fluid search dropdown">
+      <select ng-model="ctrl.selected.barrio" ng-change="" class="ui fluid search dropdown">
           <option value="">Barrio/Localidad</option>
           <option  value="{$ barrio.id $}" ng-repeat="barrio in ctrl.barrios">{$ barrio.nombre $}</option>
       </select>
   </div>
-  <button class="ui basic button" ng-click="ctrl.agregarUbicacion()" ng-if="ctrl.multiple"><i class="plus circle icon"></i>Agregar</button>
-  <button class="ui basic button" ng-click="ctrl.limpiarUbicacion()"><i class="erase icon "></i>Limpiar</button>
+  <button class="ui basic button" ng-click="ctrl.agregarUbicacion();ctrl.limpiarUbicacion();ctrl.callback()"  ng-if="ctrl.multiple"><i class="plus circle icon"></i>Agregar</button>
+  <button class="ui basic button" ng-click="ctrl.limpiarUbicacion();ctrl.callback()"><i class="erase icon "></i>Limpiar</button>
     <button title="Borrar todo" ng-click="ctrl.borrarUbicaciones()" class="ui circular icon basic button red no-anim" style="float:right" ng-if="seleccionados.length > 0"><i class="trash outline icon "></i></button>
 
 </div>

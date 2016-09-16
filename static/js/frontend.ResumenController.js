@@ -269,8 +269,8 @@
         $scope.loading = false;
         $scope.sin_datos = true;
         $scope.checkFiltros = {
-            ubicacionCheck: false,
-            prioridadCheck: false,
+            ubicacionCheck: true,
+            prioridadCheck: true,
             dncpCheck: false,
             estadoCheck: false
         };
@@ -291,9 +291,6 @@
                 echarts = ec;
             });
 
-        $scope.activar_filtro = function () {
-            $('#actualizar-resumen').transition('jiggle');
-        };
         $scope.filterObject = {};
         $scope.data = {};
         $scope.departamentoSelected = '';
@@ -302,10 +299,10 @@
             informes: false
         };
         $scope.prioridadesSeleccionadas = {
-          sanitarios: false,
-          aulas: false,
-          mobiliarios: false,
-          otros: false
+          sanitarios: true,
+          aulas: true,
+          mobiliarios: true,
+          otros: true
         };
         $scope.dncpSeleccionadas = {
           planificaciones: false,
@@ -466,5 +463,22 @@
 
         };
 
+
+
+        $scope.activar_filtro = function () {
+            $('#actualizar-resumen').transition('jiggle');
+            console.log("algo");
+            $scope.actualizarResumen();
+
+        };
+
+
+
+
+
+
     }]);
+
+
+
 })();
