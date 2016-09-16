@@ -33,6 +33,44 @@
             $icon.css('font-size', iconSize);
         }
     });
+
+
+      nuevaDirectiva('buscar', 'search-id.html', {
+        scope: {
+            inputClass: '@'
+        },
+        link: function (scope, element, attrs) {
+            var iconSize = (scope.inputClass === 'massive')? '3em' : 'inherit';
+            var textSize = (scope.inputClass === 'massive')? 'inherit' : 'small';
+            var $icon = $(element).find('.icon.search');
+            var $input = $(element).find('.labeled.input');
+            //var $dropdown = $(element).find('.dropdown.busqueda');
+            //$dropdown.addClass(scope.inputClass);
+            console.log($input.find('input')[0], textSize);
+            $input.addClass(scope.inputClass).find('input').css('font-size', textSize);
+            //console.log($dropdown.css('height'));
+            $icon.css('font-size', iconSize);
+        }
+    });
+
+
+      nuevaDirectiva('buscarid', 'search-id.html', {
+        scope: {
+            inputClass: '@'
+        },
+        link: function (scope, element, attrs) {
+            var iconSize = (scope.inputClass === 'massive')? '3em' : 'inherit';
+            var textSize = (scope.inputClass === 'massive')? 'inherit' : 'small';
+            var $icon = $(element).find('.icon.search');
+            var $input = $(element).find('.labeled.input');
+            //var $dropdown = $(element).find('.dropdown.busqueda');
+            //$dropdown.addClass(scope.inputClass);
+            console.log($input.find('input')[0], textSize);
+            $input.addClass(scope.inputClass).find('input').css('font-size', textSize);
+            //console.log($dropdown.css('height'));
+            $icon.css('font-size', iconSize);
+        }
+    });
     nuevaDirectiva('resultElement', 'result-element.html', {
         scope: {
             result: '=',
@@ -68,7 +106,7 @@
                     departamento: '',
                     distrito: '',
                     barrio: '',
-                    check: false
+                    check: true
                 };
             }
             $scope.$watch('ctrl.selected.check', function(value){
@@ -235,6 +273,7 @@
                 $timeout(function () {
                     $('#ubicacion .ui.dropdown').dropdown('clear');
                 }, 0, false);
+                
             };
             $control.borrarUbicaciones = function () {
                 $scope.seleccionados = [];

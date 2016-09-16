@@ -217,7 +217,7 @@
                     $scope.planificaciones_actual = undefined;
                     $scope.adjudicaciones_actual = undefined;
                     //
-                    $scope.periodo = '2015';
+                    $scope.periodo = '2016';
                     backEnd.establecimiento_short.get({md5: true}, function (data) {
                         var md5hashnew = data.hash;
                         var md5hashold = '';
@@ -452,16 +452,24 @@
                 //---------------
 
                 //TODO: refactor
+
+                /* idInstitucion no es obligatorio*/
                 $scope.showInfoPopUp = function (id, idInstitucion) {
                     //   $('#map').css('width', '100%');
+//inicializo variables
+                    $scope.show2014 = false;
+                    $scope.show2015 = false;
+                    $scope.show2016 = false;
+
                     $scope.establecimiento = id;
                     if (!$location.$$search.establecimiento) {
-                        sidebarInicialized = false;
+                        sidebarInicialized = false; //signica que no esta abierto el sidebar, porque no hay un establecimiento el el url
                     }
 
                     $location.search('establecimiento', id);
                     $location.search('institucion', idInstitucion);
                     if (!idInstitucion) {
+                        console.log('!idInstitucion es nulo')
                         idInstitucion = '';
                     }
                     //   if($scope.last.codigo_establecimiento === id
@@ -498,11 +506,14 @@
 
                         $scope.planificaciones_actual = planificacion_actuales;
                         $scope.adjudicaciones_actual = adjudicaciones;
-                    }
+                        
+                    }//fin setInfoDNCP
 
                     backEnd.establecimiento.get({
                         id: id
                     }, function (value) {
+
+                        console.log ('estoy en get del establecimiento');
                         establecimiento_nuevo = value;
                         var lat = parseFloat(establecimiento_nuevo.latitud);
                         var lon = parseFloat(establecimiento_nuevo.longitud);
@@ -515,27 +526,43 @@
                             // $scope.infoData.instituciones = value;
 
                             $scope.infoData.instituciones = instituciones_nuevas;
+                            console.log ( 'info data instituciones -- '+ $scope.infoData.instituciones);
+                            console.log (  $scope.infoData.instituciones);
                             $scope.infoData.establecimiento = establecimiento_nuevo;
+
+                            
+                                console.log (  $scope.documentosContraloria);
+                            /* $scope.documentosContraloria = instituciones_nuevas.documento_contraloria
+                                    console.log('--');
+                                     console.log('--');
+                                    console.log($scope.documentosContraloria);*/
+
                             //Verifica consistencia de datos
                             if ($.inArray(idInstitucion, $scope.infoData.instituciones
                                     .map(
                                     function (el) {
                                         return el.codigo_institucion;
                                     })) >= 0) {
+
+
                                 $scope.institucion_actual = idInstitucion;
                                 var t = $scope.infoData.instituciones;
                                 for (var i in t) {
                                     if (t[i].codigo_institucion === idInstitucion) {
                                         setInfoDNCP(t[i].planificaciones, t[i].adjudicaciones);
+                                         $scope.documentosContraloria =  t[i].documento_contraloria;
                                         //$scope.planificaciones_actual = t[i].planificaciones;
                                         //$scope.adjudicaciones_actual = t[i].adjudicaciones;
                                     }
                                 }
                             } else {
+
                                 $scope.institucion_actual = instituciones_nuevas[
                                     0].codigo_institucion;
+
                                 //$scope.planificaciones_actual = instituciones_nuevas[0].planificaciones;
                                 //$scope.adjudicaciones_actual = instituciones_nuevas[0].adjudicaciones;
+                                console.log(instituciones_nuevas[0].documento_contraloria);
                                 setInfoDNCP(instituciones_nuevas[0].planficaciones, instituciones_nuevas[0].adjudicaciones);
                             }
                             $timeout(function () {
@@ -571,20 +598,98 @@
                                 //$('.right.sidebar .ui.dropdown').dropdown();
 
                             });
-
-
-                        });
-                    });
-                    backEnd.prioridades.get({
+                             backEnd.prioridades.get({
                         id: id
                     }, function (value) {
+
                         $scope.prioridades = value;
+                        console.log($scope.prioridades);
+                         console.log($scope.institucion_actual);
+                          console.log(instituciones_nuevas);
+                           console.log($scope.infoData.instituciones);
+
+                          console.log(  $scope.last );
+
+                          codigoI = $scope.institucion_actual
+
+     
+                        function find2016(item) { 
+                              console.log(  codigoI );
+                            return item.periodo === '2016' && item.codigo_institucion==codigoI;
+                        }
+
+                        function find2015(item) { 
+                            return item.periodo === '2015' && item.codigo_institucion==codigoI;
+                        }
+
+                        function find2014(item) { 
+                            return item.periodo === '2014' && item.codigo_institucion==codigoI ;
+
+                        }
+
+
+            if ($scope.prioridades.aulas.find(find2014) || $scope.prioridades.mobiliarios.find(find2014) || $scope.prioridades.sanitarios.find(find2014)) {
+                           $scope.show2014 = true;
+                        }else{
+                       
+                           $scope.show2014 = false;
+                        };
+
+
+
+            if ($scope.prioridades.aulas.find(find2015) || $scope.prioridades.mobiliarios.find(find2015) || $scope.prioridades.sanitarios.find(find2015)) {
+                       
+                           $scope.show2015 = true;
+                        }else{
+                       
+                           $scope.show2015 = false;
+                        };;
+
+               if ($scope.prioridades.aulas.find(find2016) || $scope.prioridades.mobiliarios.find(find2016) || $scope.prioridades.sanitarios.find(find2016)) {
+                           $scope.show2016 = true;
+                        }else{
+                       
+                           $scope.show2016 = false;
+                        };;
+
+                        console.log('2016--'+ $scope.show2016);
+
+                        console.log('2015--'+ $scope.show2015);
+
+                        console.log('2014--'+ $scope.show2014);
+
+                        if ($scope.show2016) {
+                            $scope.periodo = '2016';
+                        }else if ($scope.show2015){
+                       
+                           $scope.periodo = '2015';
+                        }else if ($scope.show2014){
+                       
+                           $scope.periodo = '2014';
+                        }
+                        else {
+                       
+                           $scope.periodo = '2016';
+                        }
+
+
+                        
+
+
+
+
+
                         $timeout(function () {
                             $scope.$digest();
                             $scope.$apply();
                             $('.with-popup').popup({inline: true});
                         }, 500, false);
-                    });
+                    });//FIN DE PRIORIDADES
+
+
+                        });// FIN DE INSTITUCIONES
+                    });// FIN DE ESTABLECIEMINTO
+                   
 
 
                 };

@@ -629,6 +629,71 @@ def estado_de_obra(request):
     return JsonResponse('Exito!', safe=False, status=200)
 
 
+@login_required()
+@transaction.atomic
+def contraloria_vinculacion(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Método inválido.'}, status=405)
+
+    estado = request.POST.get('archivo')
+    anho = request.POST.get('anho')
+    instituciones = request.POST.getlist('instituciones[]')
+    print request.POST
+    print instituciones[0]
+   # print instituciones[1]
+   
+
+    permisos = request.user.get_all_permissions()
+    permiso_verificar = 'openfonacide.verificar_estado' in permisos
+    permiso_cambiar = 'openfonacide.cambiar_estado' in permisos
+
+    if not permiso_cambiar and not permiso_verificar:
+        return JsonResponse({'error': 'No tiene permisos para realizar esta accion'}, status=403)
+
+  
+
+    documento = request.FILES.get('archivo')
+    nuevo_documento = Documento(archivo=documento, anho = anho)
+    nuevo_documento.save()
+    for codigo_institucion in instituciones:
+        print "Codigo de institucion; %s" % codigo_institucion
+        # institucion = Institucion.objects.get(codigo_institucion=codigo_institucion, periodo='2014')
+        try:
+            print "Busco institucion; %s" % codigo_institucion
+            # institucion = Institucion.objects.get(codigo_institucion=codigo_institucion)
+            institucion = Institucion.objects.filter(codigo_institucion=codigo_institucion, periodo='2014')[:1].get()
+            print "ya tengo la institucion; %s" % codigo_institucion
+             # institucion = Institucion.objects.filter(codigo_institucion=codigo_institucion, periodo='2014')[:1].get()
+            institucion.documento_contraloria.add(nuevo_documento)
+            print "AGREGUE DOCUMENTO; %s" % codigo_institucion
+            institucion.save()  
+            print "YA AGREGUE INSITUCION; %s" % codigo_institucion              
+        except ObjectDoesNotExist:
+            print "No existe institucion numero ; %s" % codigo_institucion
+       
+        
+        
+
+   
+  
+
+    
+
+    
+
+   
+
+   # historial = HistorialEstado(prioridad=codigo_prioridad, clase=clase_prioridad, fecha=fecha_actual,
+    #                            estado_de_obra=estado, fecha_modificacion=fecha_modificacion,
+     #                           cambiado_por_id=cambiado_por_id, cambiado_por_email=cambiado_por_email,
+      #                          verificado_por_id=verificado_por_id, verificado_por_email=verificado_por_email,
+       #                         documento=documento)
+   # historial.save()
+
+    return redirect('/contralorfonacide/contraloria-vinculacion/',)
+    #return JsonResponse('Exito!', safe=False, status=200)
+
+
 def reportar(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Método inválido.'}, status=405)

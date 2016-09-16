@@ -1,0 +1,55 @@
+<style type="text/css" xmlns="http://www.w3.org/1999/html">
+    .strong {
+        font-weight: bold;
+    }
+</style>
+<div class="ui page grid">
+    <div class="sixteen wide column" style="padding-top: 30px;padding-bottom: 30px;min-height: 500px;">
+        <h1>Carga de documentos de contraloria</h1>
+                <div class="ui segment">
+                  <form action="contraloria_vinculacion" name="contraloria_vinculacion" method="post" enctype="multipart/form-data">
+                      <div class="ui item">
+                            <div class="ui stackable grid">
+                                
+  
+                                <div class="nine wide column left aligned content auto-height" style="">
+                                    <h4>Ingresar url del pdf de contraloria</h4>
+                                    <input id="p_archivo" type="file" class="ui input file" name="archivo">
+                                   <div class="ui input">
+                                      <input id="anho" type="text" placeholder="Año" name="anho">
+                                    </div>
+                                </div>
+
+                               
+                                <div class="seven wide column left aligned auto-height">
+                                       
+
+                                       
+                                    <div class="ui right labeled left icon input">
+
+                                         <div buscar class="item" style="float: right;width: 350px;padding: 0" input-class="large"></div>
+                                      
+
+                                    </div>
+
+                                     <div id="ubicacion-labels" class="ui bottom attached segment" >
+                                        <h4>Instituciones vinculadas: </h4>
+  
+                                            </div>
+
+                                        
+                                        <button class="ui button" type="submit">Guardar</button>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                          {% csrf_token %}
+            </form>     
+                </div>
+                
+    </div>
+</div>
+

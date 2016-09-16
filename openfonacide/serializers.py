@@ -2,6 +2,24 @@ from rest_framework import serializers
 
 from openfonacide.models import *
 from openfonacide.utils import conversion
+import settings
+
+
+
+
+class DocumentoSerializer(serializers.HyperlinkedModelSerializer):
+
+    archivo_url = serializers.SerializerMethodField()
+
+    def get_archivo_url(self, obj):
+        return '%s%s' % (settings.MEDIA_URL, obj.archivo)
+
+    class Meta:
+        model = Documento
+        fields = ('archivo_url','anho') 
+
+
+
 
 
 class EstablecimientoSerializer(serializers.ModelSerializer):
@@ -94,6 +112,7 @@ class AdjudicacionSerializer(serializers.ModelSerializer):
 class InstitucionSerializer(serializers.ModelSerializer):
     planificaciones = PlanificacionSerializer(many=True, read_only=True)
     adjudicaciones = AdjudicacionSerializer(many=True, read_only=True)
+    documento_contraloria = DocumentoSerializer(many=True, read_only=True)
 
     class Meta:
         model = Institucion
@@ -114,7 +133,8 @@ class InstitucionSerializer(serializers.ModelSerializer):
             'uri_establecimiento',
             'uri_institucion',
             'planificaciones',
-            'adjudicaciones'
+            'adjudicaciones',
+             'documento_contraloria'
         )
 
 

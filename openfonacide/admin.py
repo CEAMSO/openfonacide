@@ -36,15 +36,20 @@ class NotificacionesReportesAdmin(admin.ModelAdmin):
 #         }),
 #     )
 
+
+####### IMPORTACION ####################
 class ImportacionResource(resources.ModelResource):
     class Meta:
         model = Importacion
+
 
 @admin.register(Importacion)
 class ImportacionAdmin(ImportExportModelAdmin):
     resource_class = ImportacionResource
     pass
 
+
+####### ADJUDICACION ####################
 class AdjudicacionResource(resources.ModelResource):
     class Meta:
         model = Adjudicacion
@@ -68,16 +73,44 @@ class PlanificacionAdmin(ImportExportModelAdmin):
     pass
 
 
+class InstitucionInline(admin.TabularInline):
+    model = Institucion.documento_contraloria.through
+
+
+
+class DocumentosResource(resources.ModelResource):
+    class Meta:
+        model = Documento
+        # exclude = ('id',)
+
+
+@admin.register(Documento)
+class DocumentoAdmin(ImportExportModelAdmin):
+    resource_class = DocumentosResource
+    pass
+
+####### ESTABLECIMIENTO ####################
+
+class EstablecimientoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'nombre_distrito','nombre_departamento')
+    search_fields = ['nombre', 'nombre_distrito','nombre_departamento' , 'codigo_establecimiento']
+
+
 class EstablecimientoResource(resources.ModelResource):
     class Meta:
         model = Establecimiento
         # exclude = ('id',)
 
-
-@admin.register(Establecimiento)
+admin.site.register(Establecimiento,EstablecimientoAdmin )
+#@admin.register(Establecimiento)
 class EstablecimientoAdmin(ImportExportModelAdmin):
     resource_class = EstablecimientoResource
     pass
+
+####### INSTITUCIONES ####################
+class InstitucionAdmin(admin.ModelAdmin):
+    list_display = ('nombre_institucion', 'nombre_distrito','nombre_departamento')
+    search_fields = ['nombre_institucion', 'nombre_distrito','nombre_departamento' , 'codigo_institucion']
 
 
 class InstitucionResource(resources.ModelResource):
@@ -85,13 +118,13 @@ class InstitucionResource(resources.ModelResource):
         model = Institucion
         # exclude = ('id',)
 
+admin.site.register(Institucion,InstitucionAdmin )
 
-@admin.register(Institucion)
 class InstitucionAdmin(ImportExportModelAdmin):
     resource_class = InstitucionResource
     pass
 
-
+####### SANITARIO ####################
 class SanitariosResource(resources.ModelResource):
     class Meta:
         model = Sanitario
@@ -100,23 +133,31 @@ class SanitariosResource(resources.ModelResource):
 
 @admin.register(Sanitario)
 class SanitariosAdmin(ImportExportModelAdmin):
+    search_fields = ['periodo','codigo_institucion','codigo_establecimiento', 'nombre_institucion', 'nombre_distrito','nombre_departamento']
+    list_display = ('periodo','codigo_institucion','codigo_establecimiento', 'nombre_institucion', 'nombre_distrito','nombre_departamento' )
     resource_class = SanitariosResource
     pass
 
-
+####### ESPACIOS ####################
 class EspaciosResource(resources.ModelResource):
+    
     class Meta:
         model = Espacio
+
         # exclude = ('id',)
 
 
 @admin.register(Espacio)
 class EspaciosAdmin(ImportExportModelAdmin):
+    search_fields = ['periodo','codigo_institucion','codigo_establecimiento', 'nombre_institucion', 'nombre_distrito','nombre_departamento']
+    list_display = ('periodo','codigo_institucion','codigo_establecimiento', 'nombre_institucion', 'nombre_distrito','nombre_departamento' )
     resource_class = EspaciosResource
     pass
 
 
+####### MOBILIARIO ####################
 class MobiliariosResource(resources.ModelResource):
+   
     class Meta:
         model = Mobiliario
         # exclude = ('id',)
@@ -124,6 +165,8 @@ class MobiliariosResource(resources.ModelResource):
 
 @admin.register(Mobiliario)
 class MobiliariosAdmin(ImportExportModelAdmin):
+    search_fields = ['periodo','codigo_institucion','codigo_establecimiento', 'nombre_institucion', 'nombre_distrito','nombre_departamento']
+    list_display = ('periodo','codigo_institucion','codigo_establecimiento', 'nombre_institucion', 'nombre_distrito','nombre_departamento' )
     resource_class = MobiliariosResource
     pass
 

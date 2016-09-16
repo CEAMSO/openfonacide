@@ -72,6 +72,8 @@ class Planificacion(models.Model):
     class Meta:
         verbose_name_plural = "planificaciones"
         unique_together = (("id_llamado", "anio"),)
+    def __unicode__(self):
+        return  self.nombre_licitacion or u''
 
 
 class Adjudicacion(models.Model):
@@ -105,6 +107,12 @@ class Adjudicacion(models.Model):
     class Meta:
         verbose_name_plural = "adjudicaciones"
 
+class Documento(models.Model):
+    archivo =  models.FileField(upload_to=get_upload_file_name, null=True)
+    anho = models.CharField(max_length=255, null=True)
+    
+   
+
 
 # Datos Específicos de Instituciones Educativas
 class Institucion(models.Model):
@@ -125,6 +133,7 @@ class Institucion(models.Model):
     uri_institucion = models.CharField(max_length=256, null=True)
     planificaciones = models.ManyToManyField(Planificacion)
     adjudicaciones = models.ManyToManyField(Adjudicacion)
+    documento_contraloria = models.ManyToManyField(Documento, related_name="Instituciones")
 
     class Meta:
         verbose_name_plural = "instituciones"
@@ -144,6 +153,8 @@ class Institucion(models.Model):
         # tiene_internet = models.CharField(max_length=256)
         # paginaweb = models.CharField(max_length=256)
         # correo_electronico = models.CharField(max_length=256)
+    def __unicode__(self):
+        return  self.nombre_institucion or u''
 
 
 # Prioridades 2.0###############################################################################
@@ -176,7 +187,8 @@ class Espacio(models.Model):
     fecha_verificacion = models.DateTimeField(null=True)
     verificado_por = models.ForeignKey(to=User, null=True, related_name='+')
     documento = models.CharField(max_length=256, null=True)
-
+    def __unicode__(self):
+        return  self.nombre_institucion or u''
 
 class Sanitario(models.Model):
     periodo = models.CharField(max_length=50, null=True)
@@ -206,6 +218,8 @@ class Sanitario(models.Model):
     fecha_verificacion = models.DateTimeField(null=True)
     verificado_por = models.ForeignKey(to=User, null=True, related_name='+')
     documento = models.CharField(max_length=256, null=True)
+    def __unicode__(self):
+        return  self.nombre_institucion or u''
 
 
 class Mobiliario(models.Model):
@@ -234,6 +248,8 @@ class Mobiliario(models.Model):
     fecha_verificacion = models.DateTimeField(null=True)
     verificado_por = models.ForeignKey(to=User, null=True, related_name='+')
     documento = models.CharField(max_length=256, null=True)
+    def __unicode__(self):
+        return  self.nombre_institucion or u''
 
 
 class HistorialEstado(models.Model):
@@ -279,6 +295,8 @@ class ServicioBasico(models.Model):
 
     class Meta:
         verbose_name_plural = "serviciosbasicos"
+    def __unicode__(self):
+        return  self.codigo_establecimiento or u''
 
 
 # Tabla Temporal que almacena los resultados del String Matcher

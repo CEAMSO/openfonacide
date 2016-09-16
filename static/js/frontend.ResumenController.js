@@ -269,8 +269,8 @@
         $scope.loading = false;
         $scope.sin_datos = true;
         $scope.checkFiltros = {
-            ubicacionCheck: false,
-            prioridadCheck: false,
+            ubicacionCheck: true,
+            prioridadCheck: true,
             dncpCheck: false,
             estadoCheck: false
         };
@@ -283,7 +283,7 @@
         require(
             [
                 'echarts',
-                'echarts/chart/funnel',   // load-on-demand, don't forget the Magic switch type.
+                //'echarts/chart/funnel',   // load-on-demand, don't forget the Magic switch type.
                 'echarts/chart/pie',
                 'echarts/chart/bar',
                 'echarts/chart/line'
@@ -291,9 +291,6 @@
                 echarts = ec;
             });
 
-        $scope.activar_filtro = function () {
-            $('#actualizar-resumen').transition('jiggle');
-        };
         $scope.filterObject = {};
         $scope.data = {};
         $scope.departamentoSelected = '';
@@ -302,10 +299,10 @@
             informes: false
         };
         $scope.prioridadesSeleccionadas = {
-          sanitarios: false,
-          aulas: false,
-          mobiliarios: false,
-          otros: false
+          sanitarios: true,
+          aulas: true,
+          mobiliarios: true,
+          otros: true
         };
         $scope.dncpSeleccionadas = {
           planificaciones: false,
@@ -315,7 +312,7 @@
         $scope.ubicacionesSeleccionadas = [];
 
         var cargarAnio = function(){
-            $scope.anios = ['2012', '2015'];
+            $scope.anios = ['2014', '2015', '2016'];
         };
         cargarAnio();
 
@@ -466,5 +463,22 @@
 
         };
 
+
+
+        $scope.activar_filtro = function () {
+            $('#actualizar-resumen').transition('jiggle');
+            console.log("algo");
+            $scope.actualizarResumen();
+
+        };
+
+
+
+
+
+
     }]);
+
+
+
 })();
